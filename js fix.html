@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        .count{
+            height: 70px;
+            text-align: right;
+             line-height: 70px;
+             font-size: 30px;
+             color: rgb(164, 169, 173);
+             margin-right: 20px;
+        }
+        .number{
+             height: 130px;
+             width: 460px;
+             text-align: right;
+             line-height: 130px;
+             font-size: 90px;
+             color: aliceblue;
+             margin-right: 20px;
+             background-color: #444147;
+             border:none;
+             /* margin: 0px; */
+             padding: 0;
+             outline: none;
+             
+        }
+        .jisuanqi{
+            background-color: #444147;
+            width: 480px;
+            height: 800px;
+            margin:100px auto;
+            border-top-right-radius: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+        .top_shuzi {
+            width: 100%;
+            height: 200px;
+            
+        }
+        .box1{
+            width: 120px;
+			height: 100px;
+			border: 1px solid #444147;
+			box-sizing: border-box;
+			float: left;
+			font-size: 25px;
+            color: aliceblue;
+			text-align: center;
+			line-height: 100px;
+            background-color: #565459;
+        }
+        .box1:hover{
+            background-color: #747277;  
+        }
+        .box1:active{
+            background-color: #565459;
+        }
+        .box2{
+            width: 120px;
+			height: 100px;
+			border: 1px solid #444147;
+			box-sizing: border-box;
+			float: left;
+			font-size: 25px;
+            color: aliceblue;
+			text-align: center;
+			line-height: 100px;
+            background-color: #FF950C;
+        }
+        .box2:hover{
+            background-color: #f8a83f;
+        }
+        .box2:active{
+            background-color: #FF950C;
+        }
+        .box3{
+            width: 120px;
+			height: 100px;
+			border: 1px solid #444147;
+			box-sizing: border-box;
+			float: left;
+			font-size: 25px;
+            color: aliceblue;
+			text-align: center;
+			line-height: 100px;
+            background-color: #727074;
+        }
+        .box3:hover{
+            background-color: #565459;
+        }
+        .box3:active{
+            background-color: #403e42 ;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="jisuanqi">
+      <div class="top_shuzi">
+        <div class="count">4</div>
+        <input type="" id="inp" class="number" readonly="readonly" value="0">
+        <!-- <div class="number" type="text" id="inp" value="0">6</div> -->
+      </div>
+      <div class="button">
+        <button class="box1">%</button>  <!-- 首位数字的对应百分比的值 -->
+        <button class="box1">CE</button>   <!-- 删除数字 -->
+        <button class="box1" onclick="C()">C</button>  <!-- 删除所有 -->
+        <button class="box2" onclick="Bs()">Bs</button>  <!-- 清除末位数字 -->
+        <button class="box1">x^-1</button>  <!-- 倒数 -->
+        <button class="box1">x²</button>  <!-- 平方 -->
+        <button class="box1">√ </button>  <!-- 根号 -->
+        <button class="box2" onclick="addStr('/')" data-type="">÷</button>
+        <button class="box3" onclick="addStr(7)">7</button>
+        <button class="box3" onclick="addStr(8)">8</button>
+        <button class="box3" onclick="addStr(9)">9</button>
+        <button class="box2" onclick="addStr('*')">×</button>
+        <button class="box3" onclick="addStr(4)">4</button>
+        <button class="box3" onclick="addStr(5)">5</button>
+        <button class="box3" onclick="addStr(6)">6</button>
+        <button class="box2" onclick="addStr('-')">-</button>
+        <button class="box3" onclick="addStr(1)">1</button>
+        <button class="box3" onclick="addStr(2)">2</button>
+        <button class="box3" onclick="addStr(3)">3</button>
+        <button class="box2" onclick="addStr('+')">+</button>
+        <button class="box3" style="border-bottom-left-radius: 20px;">+/-</button>
+        <button class="box3">0</button>
+        <button class="box3">.</button>
+        <button class="box2" style="border-bottom-right-radius: 20px;" onclick="count1()">=</button>
+      </div>
+      </div>
+    </div>
+   
+
+</body>
+<script>
+    const buttonContainer=document.querySelector('.button');
+    buttonContainer.addEventListener('click',e=>{
+        console.log(e.target);
+    })
+    function addStr(s){
+        var inp=document.getElementById("inp");
+        if(inp==0){
+            inp.value=inp;
+        }
+        else{
+            // alert(inp);
+            inp.value=inp.value+s;   
+        }
+    }
+    function C(){
+        var inp=document.getElementById("inp");
+        inp.value=null;
+    }
+    function count1(){
+        var inp=document.getElementById("inp");
+        val=eval(inp.value);
+        inp.value=val;
+        // alert(val);
+    }
+    function Bs(){
+        var inp=document.getElementById("inp");
+        var str=inp.value.substr(0,inp.value.length-1);
+        inp.value=str;
+    } 
+    
+</script>
+</html>

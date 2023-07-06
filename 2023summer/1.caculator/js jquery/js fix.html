@@ -52,12 +52,14 @@
     // const caculate="0";  //运算的对象
     const prevElement=document.querySelector('.prev');
     let iffinish="0";  //是否运算完成
-    let leftnumber="0";  //左边的数
-    let rightnumber="0";  //右边的数
+    let leftnumber="";  //左边的数
+    let rightnumber="";  //右边的数
     let fuhao='';  //运算符号
     let fuhao2='';  //显示符号
     let suanshi='1';  //是否显示算式
     let yunsuan="0";  //点击运算符号时刷新inp
+    let lianxuyunsuan="0";
+    let key="";
     buttonContainer.addEventListener('click',e=>{
         const type=e.target.dataset.type;
         console.log(e.target);  //获取按钮属性
@@ -70,26 +72,48 @@
             // alert(s)
             if(iffinish=="1"){
              caculate.value="";  
-             iffinish="0"; 
+             iffinish="0";
+             key="number"; 
             } 
             if(yunsuan=="1"){
             caculate.value=leftnumber+fuhao2;
+            key="number";
             yunsuan="0";    
             }   
-            inp.value=s;  //重置inp
-            
-                
+            inp.value=s;  //重置inp      
+            rightnumber=s;
         }
         else{
             if(s<"0"||s>"9"&&iffinish=="0"){
                fuhao=s; 
                fuhao2=s;
-            //    fuhao1.value=fuhao; 
-               leftnumber=inp.value;
+            //    fuhao1.value=fuhao;    
                //caculate.value="";
                yunsuan="1";  
                //suanshi="1";
-               // alert(left)  
+               // alert(left)
+               if(key=="fuhao"){
+                lianxuyunsuan="0";
+               }else if(key=="number"){
+                lianxuyunsuan="1";
+               }
+               if(lianxuyunsuan=="1"){
+                val=eval(leftnumber+fuhao+rightnumber);
+                inp.value=val;
+                iffinish="1";
+                leftnumber=val;
+                fuhao="";
+                caculate.value=val+s;
+                //  alert("zuo"+leftnumber);
+                //  alert("fuhao"+fuhao);
+                //  alert("you"+rightnumber)
+                // alert("val"+val);
+               }else{
+                key="fuhao";
+               
+            }
+               if(fuhao!=""){
+                leftnumber=inp.value;
                if(s=='/'){
                 caculate.value=leftnumber+"÷";
                 fuhao2="÷";
@@ -101,39 +125,50 @@
                 else{
                  caculate.value=leftnumber+fuhao2;   
                 }
+                 }
                 
+
             }
                // alert(inp);
             else{
                 inp.value=inp.value+s;
+                rightnumber=inp.value;
+                // alert(leftnumber);
                 // if(iffinish=="0"){
                 //  caculate.value+=s;   
                 // }
-                
+                key="number";
                 // caculate.value+=s;
                 // iffinish="0";   
             }
-            
+
         }
+
     }
     function C(){
         var inp=document.getElementById("inp");
         var caculate=document.getElementById("caculate");
         caculate.value=""
         inp.value="0";
+        leftnumber="";
+        rightnumber="";
+        fuhao="";
+        lianxuyunsuan="0"
+        key="";
     }
     function count1(){
         var inp=document.getElementById("inp");
         var caculate=document.getElementById("caculate");
-        val=eval(leftnumber+fuhao+inp.value);
+        val=eval(leftnumber+fuhao+rightnumber);
         // alert("zuo"+left);
         // alert("fuhao"+fuhao);
         // alert("you"+caculate.value)
         // alert("val: "+val);
-        caculate.value=leftnumber+fuhao2+inp.value+"=";  
+        caculate.value=leftnumber+fuhao2+rightnumber+"=";  
         inp.value=val;
         iffinish="1";
         leftnumber=val;
+        fuhao="";
     }
     function Bs(){
         var inp=document.getElementById("inp");
@@ -143,7 +178,10 @@
           str="0";    
         }
         inp.value=str;
+        rightnumber=rightnumber.substr(0,rightnumber.length-1);
+        // alert("right:"+rightnumber);
         // caculate.value=str;
+        key="";
     } 
     function CE(){
         var caculate=document.getElementById("caculate");

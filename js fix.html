@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>计算器</title>
     <style>
+        input{
+            background-color: #444147;
+            border:none;
+            outline: none;
+            padding: 0;            
+        }
         .count{
             height: 70px;
             text-align: right;
@@ -12,6 +18,8 @@
              font-size: 30px;
              color: rgb(164, 169, 173);
              margin-right: 20px;
+             width: 460px;
+             border-top-left-radius: 20px;
         }
         .number{
              height: 130px;
@@ -103,35 +111,36 @@
 <body>
     <div class="jisuanqi">
       <div class="top_shuzi">
-        <div class="count">4</div>
+        <!-- <input class="count" id="jisuan" value="0" readonly="readonly"> -->
+        <input class="count" id="caculate" value="" readonly="readonly">
         <input type="" id="inp" class="number" readonly="readonly" value="0">
         <!-- <div class="number" type="text" id="inp" value="0">6</div> -->
       </div>
       <div class="button">
         <button class="box1">%</button>  <!-- 首位数字的对应百分比的值 -->
-        <button class="box1">CE</button>   <!-- 删除数字 -->
+        <button class="box1" onclick="CE()">CE</button>   <!-- 删除数字 -->
         <button class="box1" onclick="C()">C</button>  <!-- 删除所有 -->
         <button class="box2" onclick="Bs()">Bs</button>  <!-- 清除末位数字 -->
         <button class="box1">x^-1</button>  <!-- 倒数 -->
         <button class="box1">x²</button>  <!-- 平方 -->
         <button class="box1">√ </button>  <!-- 根号 -->
-        <button class="box2" onclick="addStr('/')" data-type="">÷</button>
+        <button class="box2" onclick="addStr('/')" data-type="operate">÷</button>
         <button class="box3" onclick="addStr(7)">7</button>
         <button class="box3" onclick="addStr(8)">8</button>
         <button class="box3" onclick="addStr(9)">9</button>
-        <button class="box2" onclick="addStr('*')">×</button>
+        <button class="box2" onclick="addStr('*')" data-type="operate">×</button>
         <button class="box3" onclick="addStr(4)">4</button>
         <button class="box3" onclick="addStr(5)">5</button>
         <button class="box3" onclick="addStr(6)">6</button>
-        <button class="box2" onclick="addStr('-')">-</button>
+        <button class="box2" onclick="addStr('-')" data-type="operate">-</button>
         <button class="box3" onclick="addStr(1)">1</button>
         <button class="box3" onclick="addStr(2)">2</button>
         <button class="box3" onclick="addStr(3)">3</button>
-        <button class="box2" onclick="addStr('+')">+</button>
+        <button class="box2" onclick="addStr('+')" data-type="operate">+</button>
         <button class="box3" style="border-bottom-left-radius: 20px;">+/-</button>
-        <button class="box3">0</button>
+        <button class="box3" onclick="addStr(0)">0</button>
         <button class="box3">.</button>
-        <button class="box2" style="border-bottom-right-radius: 20px;" onclick="count1()">=</button>
+        <button class="box2" style="border-bottom-right-radius: 20px;" onclick="count1()" data-type="equal">=</button>
       </div>
       </div>
     </div>
@@ -139,35 +148,108 @@
 
 </body>
 <script>
+
     const buttonContainer=document.querySelector('.button');
+    // const caculate="0";  //运算的对象
+    const prevElement=document.querySelector('.prev');
+    let iffinish="0";  //是否运算完成
+    let leftnumber="0";  //左边的数
+    let rightnumber="0";  //右边的数
+    let fuhao='';  //运算符号
+    let fuhao2='';  //显示符号
+    let suanshi='1';  //是否显示算式
+    let yunsuan="0";  //点击运算符号时刷新inp
     buttonContainer.addEventListener('click',e=>{
-        console.log(e.target);
+        const type=e.target.dataset.type;
+        console.log(e.target);  //获取按钮属性
     })
     function addStr(s){
         var inp=document.getElementById("inp");
-        if(inp.value=="0"){
-            inp.value=s;
+        var caculate=document.getElementById("caculate");
+        // var fuhao1=document.getElementById('jisuan');
+        if((inp.value=="0"||iffinish=="1"||yunsuan=="1")&&(s!="+"&&s!="-"&&s!="*"&&s!="/")){
+            // alert(s)
+            if(iffinish=="1"){
+             caculate.value="";  
+             iffinish="0"; 
+            } 
+            if(yunsuan=="1"){
+            caculate.value=leftnumber+fuhao2;
+            yunsuan="0";    
+            }   
+            inp.value=s;  //重置inp
+            
+                
         }
         else{
-            // alert(inp);
-            inp.value=inp.value+s;   
+            if(s<"0"||s>"9"&&iffinish=="0"){
+               fuhao=s; 
+               fuhao2=s;
+            //    fuhao1.value=fuhao; 
+               leftnumber=inp.value;
+               //caculate.value="";
+               yunsuan="1";  
+               //suanshi="1";
+               // alert(left)  
+               if(s=='/'){
+                caculate.value=leftnumber+"÷";
+                fuhao2="÷";
+                }
+               else if(s=='*'){
+                caculate.value=leftnumber+"×";
+                fuhao2="×";
+                }
+                else{
+                 caculate.value=leftnumber+fuhao2;   
+                }
+                
+            }
+               // alert(inp);
+            else{
+                inp.value=inp.value+s;
+                // if(iffinish=="0"){
+                //  caculate.value+=s;   
+                // }
+                
+                // caculate.value+=s;
+                // iffinish="0";   
+            }
+            
         }
     }
     function C(){
         var inp=document.getElementById("inp");
+        var caculate=document.getElementById("caculate");
+        caculate.value=""
         inp.value="0";
     }
     function count1(){
         var inp=document.getElementById("inp");
-        val=eval(inp.value);
+        var caculate=document.getElementById("caculate");
+        val=eval(leftnumber+fuhao+inp.value);
+        // alert("zuo"+left);
+        // alert("fuhao"+fuhao);
+        // alert("you"+caculate.value)
+        // alert("val: "+val);
+        caculate.value=leftnumber+fuhao2+inp.value+"=";  
         inp.value=val;
-        // alert(val);
+        iffinish="1";
+        leftnumber=val;
     }
     function Bs(){
         var inp=document.getElementById("inp");
+        var caculate=document.getElementById("caculate");
         var str=inp.value.substr(0,inp.value.length-1);
+        if(str==''){
+          str="0";    
+        }
         inp.value=str;
+        caculate.value=str;
     } 
+    function CE(){
+        var caculate=document.getElementById("caculate");
+        caculate.value="";
+    }
     
 </script>
 </html>

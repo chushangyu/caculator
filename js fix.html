@@ -145,8 +145,8 @@
     })
     function addStr(s){
         var inp=document.getElementById("inp");
-        if(inp==0){
-            inp.value=inp;
+        if(inp.value=="0"){
+            inp.value=s;
         }
         else{
             // alert(inp);
@@ -155,7 +155,7 @@
     }
     function C(){
         var inp=document.getElementById("inp");
-        inp.value=null;
+        inp.value="0";
     }
     function count1(){
         var inp=document.getElementById("inp");

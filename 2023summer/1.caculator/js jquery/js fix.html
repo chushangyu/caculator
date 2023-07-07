@@ -60,6 +60,8 @@
     let yunsuan="0";  //点击运算符号时刷新inp
     let lianxuyunsuan="0";
     let key="";
+    let equal="0";
+    let yuunsuan1="0";
     buttonContainer.addEventListener('click',e=>{
         const type=e.target.dataset.type;
         console.log(e.target);  //获取按钮属性
@@ -67,6 +69,7 @@
     function addStr(s){
         var inp=document.getElementById("inp");
         var caculate=document.getElementById("caculate");
+        
         // var fuhao1=document.getElementById('jisuan');
         if((inp.value=="0"||iffinish=="1"||yunsuan=="1")&&(s!="+"&&s!="-"&&s!="*"&&s!="/")){
             // alert(s)
@@ -78,58 +81,72 @@
             if(yunsuan=="1"){
             caculate.value=leftnumber+fuhao2;
             key="number";
-            yunsuan="0";    
+            yunsuan="0";  
+            yunsuan1="0";  
             }   
-            inp.value=s;  //重置inp      
+            inp.value=s;  //重置inp 
+            // alert(s);     
             rightnumber=s;
         }
         else{
             if(s<"0"||s>"9"&&iffinish=="0"){
-               fuhao=s; 
-               fuhao2=s;
+               
+               fuhao2=s;                  
+                  if(s=='/'){
+                   fuhao2="÷";
+                  }
+                  else if(s=='*'){
+                   fuhao2="×";
+                  }
             //    fuhao1.value=fuhao;    
                //caculate.value="";
                yunsuan="1";  
                //suanshi="1";
                // alert(left)
-               if(key=="fuhao"){
-                lianxuyunsuan="0";
-               }else if(key=="number"){
-                lianxuyunsuan="1";
-               }
-               if(lianxuyunsuan=="1"){
-                val=eval(leftnumber+fuhao+rightnumber);
-                inp.value=val;
-                iffinish="1";
-                leftnumber=val;
-                fuhao="";
-                caculate.value=val+s;
+            //    if(key=="fuhao"){
+            //     lianxuyunsuan="0";
+            //    }else if(key=="number"){
+            //     lianxuyunsuan="1";
+            //    }
+            //    if(lianxuyunsuan=="10"){
+            //     val=eval(leftnumber+fuhao+rightnumber);
+            //      alert("zuo"+leftnumber);
+            //      alert("fuhao"+fuhao);
+            //      alert("you"+rightnumber)
+            //     alert("val"+val);
+            //     inp.value=val;
+            //     iffinish="1";
+            //     leftnumber=val;
+            //     fuhao="";
+            //     caculate.value=val+s;
+            //    }else{
+            //     key="fuhao";
+               
+            //    }
+                 //符号
+               if((s!=""&&caculate.value=="")||equal=="1"||yunsuan1=="1"){
+                leftnumber=inp.value;
+                  caculate.value=leftnumber+fuhao2;  
+                 yunsuan1="1";
+                //  alert("s:"+s+" caculate:"+caculate.value+" equal:"+equal+"yunsuan1: "+yunsuan1);
+                }
+                 else if(equal!="1"){
+                    val=eval(leftnumber+fuhao+rightnumber);
                 //  alert("zuo"+leftnumber);
                 //  alert("fuhao"+fuhao);
                 //  alert("you"+rightnumber)
                 // alert("val"+val);
-               }else{
-                key="fuhao";
-               
+                inp.value=val;
+                iffinish="1";
+                leftnumber=val;
+                fuhao=s;
+                caculate.value=val+fuhao2;
+                    // count1();
+                  yunsuan1="0"; 
+                }   
+                 fuhao=s;            
             }
-               if(fuhao!=""){
-                leftnumber=inp.value;
-               if(s=='/'){
-                caculate.value=leftnumber+"÷";
-                fuhao2="÷";
-                }
-               else if(s=='*'){
-                caculate.value=leftnumber+"×";
-                fuhao2="×";
-                }
-                else{
-                 caculate.value=leftnumber+fuhao2;   
-                }
-                 }
-                
-
-            }
-               // alert(inp);
+               //数字
             else{
                 inp.value=inp.value+s;
                 rightnumber=inp.value;
@@ -139,10 +156,13 @@
                 // }
                 key="number";
                 // caculate.value+=s;
-                // iffinish="0";   
+                // iffinish="0";
+                yunsuan1="0";   
             }
 
         }
+        equal="0";
+        
 
     }
     function C(){
@@ -153,13 +173,19 @@
         leftnumber="";
         rightnumber="";
         fuhao="";
+        fuhao2="0";
         lianxuyunsuan="0"
         key="";
+        equal="0";
+        yunsuan="0";
+        yunsuan1="0";
+
     }
     function count1(){
         var inp=document.getElementById("inp");
         var caculate=document.getElementById("caculate");
-        val=eval(leftnumber+fuhao+rightnumber);
+        if(fuhao!=""){
+         val=eval(leftnumber+fuhao+rightnumber);
         // alert("zuo"+left);
         // alert("fuhao"+fuhao);
         // alert("you"+caculate.value)
@@ -168,7 +194,15 @@
         inp.value=val;
         iffinish="1";
         leftnumber=val;
-        fuhao="";
+        // fuhao="";
+        lianxuyunsuan="0"; 
+        equal="1";
+        yunsuan1="0";
+        }
+        else{
+            caculate.value=rightnumber+"=";
+        }
+        
     }
     function Bs(){
         var inp=document.getElementById("inp");
@@ -182,10 +216,14 @@
         // alert("right:"+rightnumber);
         // caculate.value=str;
         key="";
+        equal="0";
+        yunsuan1="0";
     } 
     function CE(){
         var caculate=document.getElementById("caculate");
         caculate.value="";
+        equal="0";
+        yunsuan1="0";
     }
     
 </script>

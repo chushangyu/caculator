@@ -12,6 +12,7 @@ let lianxuyunsuan="0";
 let key="";
 let equal="0";
 let yuunsuan1="0";
+let zhuangtai="";
 buttonContainer.addEventListener('click',e=>{
     const type=e.target.dataset.type;
     console.log(e.target);  //获取按钮属性
@@ -149,7 +150,7 @@ function addStr(s){
         var inp=document.getElementById("inp");
         // var caculate=document.getElementById("caculate");
         var str=inp.value.substr(0,inp.value.length-1);
-        if(str==''){
+        if(str==''||str=="-"){
           str="0";  
         }
         inp.value=str;
@@ -172,6 +173,18 @@ function addStr(s){
         equal="0";
         yunsuan1="0";
         
+    }
+    function zhengfu(){
+        var inp=document.getElementById("inp");
+        if(inp.value>"0"){
+            inp.value="-"+inp.value;
+        }
+        else if(inp.value<"0"){
+            var str=inp.value.substr(1,inp.value.length);
+            inp.value=str;
+            // alert(str);
+        }
+
     }
     // $(function(){
     //     $('.number').bind('input propertychange',function(){

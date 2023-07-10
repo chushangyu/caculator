@@ -12,7 +12,7 @@
       <div class="top_shuzi">
         <!-- <input class="count" id="jisuan" value="0" readonly="readonly"> -->
         <input class="count" id="caculate" value="" readonly="readonly">
-        <input type="" id="inp" class="number"  value="0">
+        <input type="" id="inp" class="number" readonly="readonly" value="0">
         <!-- <div class="number" type="text" id="inp" value="0">6</div> -->
       </div>
       <div class="button">
@@ -36,7 +36,7 @@
         <button class="box3" onclick="addStr(2)">2</button>
         <button class="box3" onclick="addStr(3)">3</button>
         <button class="box2" onclick="addStr('+')" data-type="operate">+</button>
-        <button class="box3" style="border-bottom-left-radius: 20px;">+/-</button>
+        <button class="box3" onclick="zhengfu()" style="border-bottom-left-radius: 20px;">+/-</button>
         <button class="box3" onclick="addStr(0)">0</button>
         <button class="box3">.</button>
         <button class="box2" style="border-bottom-right-radius: 20px;" onclick="count1()" data-type="equal">=</button>

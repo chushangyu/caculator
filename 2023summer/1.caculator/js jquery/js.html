@@ -4,154 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>计算器</title>
-    <style>
-        .count{
-            height: 70px;
-            text-align: right;
-             line-height: 130px;
-             font-size: 30px;
-             color: rgb(164, 169, 173);
-             margin-right: 20px;
-        }
-        .number{
-             height: 130px;
-             text-align: right;
-             line-height: 130px;
-             font-size: 70px;
-             color: aliceblue;
-             margin-right: 20px;
-        }
-        .jisuanqi{
-            background-color: #444147;
-            width: 480px;
-            height: 800px;
-            margin:100px auto;
-            border-top-right-radius: 20px;
-            border-top-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            border-bottom-left-radius: 20px;
-        }
-        .top_shuzi {
-            width: 100%;
-            height: 200px;
-            
-        }
-        .hang{
-            width: 100%;
-            height: 100px;
-
-        }
-        .box1{
-            width: 120px;
-			height: 100px;
-			border: 1px solid #444147;
-			box-sizing: border-box;
-			float: left;
-			font-size: 25px;
-            color: aliceblue;
-			text-align: center;
-			line-height: 100px;
-            background-color: #565459;
-        }
-        .box1:hover{
-            background-color: #747277;  
-        }
-        .box1:active{
-            background-color: #565459;
-        }
-        .box2{
-            width: 120px;
-			height: 100px;
-			border: 1px solid #444147;
-			box-sizing: border-box;
-			float: left;
-			font-size: 25px;
-            color: aliceblue;
-			text-align: center;
-			line-height: 100px;
-            background-color: #FF950C;
-        }
-        .box2:hover{
-            background-color: #f8a83f;
-        }
-        .box2:active{
-            background-color: #FF950C;
-        }
-        .box3{
-            width: 120px;
-			height: 100px;
-			border: 1px solid #444147;
-			box-sizing: border-box;
-			float: left;
-			font-size: 25px;
-            color: aliceblue;
-			text-align: center;
-			line-height: 100px;
-            background-color: #727074;
-        }
-        .box3:hover{
-            background-color: #565459;
-        }
-        .box3:active{
-            background-color: #403e42 ;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="./js.css">
 </head>
 <body>
     <div class="jisuanqi">
       <div class="top_shuzi">
-        <div class="count">4</div>
-        <div class="number">{{a}}</div>
+        <!-- <input class="count" id="jisuan" value="0" readonly="readonly"> -->
+        <input class="count" id="caculate" value="" readonly="readonly">
+        <input type="" id="inp" class="number" readonly="readonly" value="0">
+        <!-- <div class="number" type="text" id="inp" value="0">6</div> -->
       </div>
-      <div class="hang">
-        <div class="box1">%</div>  <!-- 首位数字的对应百分比的值 -->
-        <div class="box1">CE</div>   <!-- 删除数字 -->
-        <div class="box1">C</div>  <!-- 删除所有 -->
-        <div class="box2">Bs</div>  <!-- 清除末位数字 -->
+      <div class="button">
+        <button class="box1">%</button>  <!-- 首位数字的对应百分比的值 -->
+        <button class="box1" onclick="CE()">CE</button>   <!-- 删除数字 -->
+        <button class="box1" onclick="C()">C</button>  <!-- 删除所有 -->
+        <button class="box2" onclick="Bs()">Bs</button>  <!-- 清除末位数字 -->
+        <button class="box1">x^-1</button>  <!-- 倒数 -->
+        <button class="box1">x²</button>  <!-- 平方 -->
+        <button class="box1">√ </button>  <!-- 根号 -->
+        <button class="box2" onclick="addStr('/')" data-type="operate">÷</button>
+        <button class="box3" onclick="addStr(7)">7</button>
+        <button class="box3" onclick="addStr(8)">8</button>
+        <button class="box3" onclick="addStr(9)">9</button>
+        <button class="box2" onclick="addStr('*')" data-type="operate">×</button>
+        <button class="box3" onclick="addStr(4)">4</button>
+        <button class="box3" onclick="addStr(5)">5</button>
+        <button class="box3" onclick="addStr(6)">6</button>
+        <button class="box2" onclick="addStr('-')" data-type="operate">-</button>
+        <button class="box3" onclick="addStr(1)">1</button>
+        <button class="box3" onclick="addStr(2)">2</button>
+        <button class="box3" onclick="addStr(3)">3</button>
+        <button class="box2" onclick="addStr('+')" data-type="operate">+</button>
+        <button class="box3" style="border-bottom-left-radius: 20px;">+/-</button>
+        <button class="box3" onclick="addStr(0)">0</button>
+        <button class="box3">.</button>
+        <button class="box2" style="border-bottom-right-radius: 20px;" onclick="count1()" data-type="equal">=</button>
       </div>
-      <div class="hang">
-        <div class="box1">x^-1</div>  <!-- 倒数 -->
-        <div class="box1">x²</div>  <!-- 平方 -->
-        <div class="box1">√ </div>  <!-- 根号 -->
-        <div class="box2">÷</div>
-      </div>
-      <div class="hang">
-        <div class="box3">7</div>
-        <div class="box3">8</div>
-        <div class="box3">9</div>
-        <div class="box2">×</div>
-      </div>
-      <div class="hang">
-        <div class="box3">4</div>
-        <div class="box3">5</div>
-        <div class="box3">6</div>
-        <div class="box2">-</div>
-      </div>
-      <div class="hang">
-        <div class="box3">1</div>
-        <div class="box3">2</div>
-        <div class="box3">3</div>
-        <div class="box2">+</div>
-      </div>
-      <div class="hang">
-        <div class="box3" style="border-bottom-left-radius: 20px;">+/-</div>
-        <div class="box3">0</div>
-        <div class="box3">.</div>
-        <div class="box2" style="border-bottom-right-radius: 20px;">=</div>
       </div>
     </div>
    
 
 </body>
+<script src="../caculator/js fix.html"></script>
 <script>
-    export default{
-        data() {
-            return {
-                a:'0',
+
+    const buttonContainer=document.querySelector('.button');
+    // const caculate="0";  //运算的对象
+    const prevElement=document.querySelector('.prev');
+    let iffinish="0";  //是否运算完成
+    let leftnumber="";  //左边的数
+    let rightnumber="";  //右边的数
+    let fuhao='';  //运算符号
+    let fuhao2='';  //显示符号
+    let suanshi='1';  //是否显示算式
+    let yunsuan="0";  //点击运算符号时刷新inp
+    let lianxuyunsuan="0";
+    let key="";
+    let equal="0";
+    let yuunsuan1="0";
+    buttonContainer.addEventListener('click',e=>{
+        const type=e.target.dataset.type;
+        console.log(e.target);  //获取按钮属性
+    })
+    function addStr(s){
+        var inp=document.getElementById("inp");
+        var caculate=document.getElementById("caculate");
+        
+        // var fuhao1=document.getElementById('jisuan');
+        if((inp.value=="0"||iffinish=="1"||yunsuan=="1")&&(s!="+"&&s!="-"&&s!="*"&&s!="/")){
+            // alert(s)
+            if(iffinish=="1"){
+             caculate.value="";  
+             iffinish="0";
+             key="number"; 
+            } 
+            if(yunsuan=="1"){
+            caculate.value=leftnumber+fuhao2;
+            key="number";
+            yunsuan="0";  
+            yunsuan1="0";  
+            }   
+            inp.value=s;  //重置inp 
+            // alert(s);     
+            rightnumber=s;
+        }
+        else{
+            if(s<"0"||s>"9"&&iffinish=="0"){
+               
+               fuhao2=s;                  
+                  if(s=='/'){
+                   fuhao2="÷";
+                  }
+                  else if(s=='*'){
+                   fuhao2="×";
+                  }
+            //    fuhao1.value=fuhao;    
+               //caculate.value="";
+               yunsuan="1";  
+               //suanshi="1";
+               // alert(left)
+            //    if(key=="fuhao"){
+            //     lianxuyunsuan="0";
+            //    }else if(key=="number"){
+            //     lianxuyunsuan="1";
+            //    }
+            //    if(lianxuyunsuan=="10"){
+            //     val=eval(leftnumber+fuhao+rightnumber);
+            //      alert("zuo"+leftnumber);
+            //      alert("fuhao"+fuhao);
+            //      alert("you"+rightnumber)
+            //     alert("val"+val);
+            //     inp.value=val;
+            //     iffinish="1";
+            //     leftnumber=val;
+            //     fuhao="";
+            //     caculate.value=val+s;
+            //    }else{
+            //     key="fuhao";
+               
+            //    }
+                 //符号
+               if((s!=""&&caculate.value=="")||equal=="1"||yunsuan1=="1"){
+                leftnumber=inp.value;
+                  caculate.value=leftnumber+fuhao2;  
+                 yunsuan1="1";
+                //  alert("s:"+s+" caculate:"+caculate.value+" equal:"+equal+"yunsuan1: "+yunsuan1);
+                }
+                 else if(equal!="1"){
+                    val=eval(leftnumber+fuhao+rightnumber);
+                //  alert("zuo"+leftnumber);
+                //  alert("fuhao"+fuhao);
+                //  alert("you"+rightnumber)
+                // alert("val"+val);
+                inp.value=val;
+                iffinish="1";
+                leftnumber=val;
+                fuhao=s;
+                caculate.value=val+fuhao2;
+                    // count1();
+                  yunsuan1="0"; 
+                }   
+                 fuhao=s;            
             }
-        },
+               //数字
+            else{
+                inp.value=inp.value+s;
+                rightnumber=inp.value;
+                // alert(leftnumber);
+                // if(iffinish=="0"){
+                //  caculate.value+=s;   
+                // }
+                key="number";
+                // caculate.value+=s;
+                // iffinish="0";
+                yunsuan1="0";   
+            }
+
+        }
+        equal="0";
+        
+
     }
-    var a=0;
+    function C(){
+        var inp=document.getElementById("inp");
+        var caculate=document.getElementById("caculate");
+        caculate.value=""
+        inp.value="0";
+        leftnumber="";
+        rightnumber="";
+        fuhao="";
+        fuhao2="0";
+        lianxuyunsuan="0"
+        key="";
+        equal="0";
+        yunsuan="0";
+        yunsuan1="0";
+
+    }
+    function count1(){
+        var inp=document.getElementById("inp");
+        var caculate=document.getElementById("caculate");
+        if(fuhao!=""){
+         val=eval(leftnumber+fuhao+rightnumber);
+        // alert("zuo"+left);
+        // alert("fuhao"+fuhao);
+        // alert("you"+caculate.value)
+        // alert("val: "+val);
+        caculate.value=leftnumber+fuhao2+rightnumber+"=";  
+        inp.value=val;
+        iffinish="1";
+        leftnumber=val;
+        // fuhao="";
+        lianxuyunsuan="0"; 
+        equal="1";
+        yunsuan1="0";
+        }
+        else{
+            caculate.value=rightnumber+"=";
+        }
+        
+    }
+    function Bs(){
+        var inp=document.getElementById("inp");
+        // var caculate=document.getElementById("caculate");
+        var str=inp.value.substr(0,inp.value.length-1);
+        if(str==''){
+          str="0";    
+        }
+        inp.value=str;
+        rightnumber=rightnumber.substr(0,rightnumber.length-1);
+        // alert("right:"+rightnumber);
+        // caculate.value=str;
+        key="";
+        equal="0";
+        yunsuan1="0";
+    } 
+    function CE(){
+        var caculate=document.getElementById("caculate");
+        caculate.value="";
+        equal="0";
+        yunsuan1="0";
+    }
+    
 </script>
 </html>

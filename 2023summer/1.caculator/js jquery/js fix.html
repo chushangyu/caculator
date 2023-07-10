@@ -45,7 +45,7 @@
    
 
 </body>
-<script src="../caculator/js fix.html"></script>
+<script src="..//js jquery/js.js"></script>
 <script>
 
     const buttonContainer=document.querySelector('.button');
@@ -101,29 +101,7 @@
             //    fuhao1.value=fuhao;    
                //caculate.value="";
                yunsuan="1";  
-               //suanshi="1";
-               // alert(left)
-            //    if(key=="fuhao"){
-            //     lianxuyunsuan="0";
-            //    }else if(key=="number"){
-            //     lianxuyunsuan="1";
-            //    }
-            //    if(lianxuyunsuan=="10"){
-            //     val=eval(leftnumber+fuhao+rightnumber);
-            //      alert("zuo"+leftnumber);
-            //      alert("fuhao"+fuhao);
-            //      alert("you"+rightnumber)
-            //     alert("val"+val);
-            //     inp.value=val;
-            //     iffinish="1";
-            //     leftnumber=val;
-            //     fuhao="";
-            //     caculate.value=val+s;
-            //    }else{
-            //     key="fuhao";
-               
-            //    }
-                 //符号
+
                if((s!=""&&caculate.value=="")||equal=="1"||yunsuan1=="1"){
                 leftnumber=inp.value;
                   caculate.value=leftnumber+fuhao2;  
@@ -209,11 +187,11 @@
         // var caculate=document.getElementById("caculate");
         var str=inp.value.substr(0,inp.value.length-1);
         if(str==''){
-          str="0";    
+          str="0";  
         }
         inp.value=str;
-        rightnumber=rightnumber.substr(0,rightnumber.length-1);
-        // alert("right:"+rightnumber);
+        rightnumber=str;
+        alert("right:"+rightnumber);
         // caculate.value=str;
         key="";
         equal="0";

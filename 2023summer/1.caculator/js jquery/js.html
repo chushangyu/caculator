@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>计算器</title>
-    <link rel="stylesheet" href="./js.css">
+    <link rel="stylesheet" href="./js.css">    
+    <script src="jquery.js"></script>
 </head>
 <body>
     <div class="jisuanqi">
       <div class="top_shuzi">
         <!-- <input class="count" id="jisuan" value="0" readonly="readonly"> -->
         <input class="count" id="caculate" value="" readonly="readonly">
-        <input type="" id="inp" class="number" readonly="readonly" value="0">
+        <input type="" id="inp" class="number"  value="0">
         <!-- <div class="number" type="text" id="inp" value="0">6</div> -->
       </div>
       <div class="button">
@@ -43,7 +44,22 @@
       </div>
     </div>
 </body>
+
+
 <script src="../js jquery/js.js"></script>
 <script>
+    // $(function(){
+    //     $('.number').bind('input propertychange',function(){
+    //         var obj = $(this); 
+    //         var text_length = obj.val().length;  //获取当前长度
+    //         var size=90-(10*(text_length-10));
+    //         var width = parseInt(text_length)*12; //该12是改变前的宽度除以当前字符串的长度，算出每个字符的长度
+    //         if(text_length>10&&text_length<15){
+    //         $(".number").css('font-size',size+'px');    
+    //         // alert(size);
+    //         }
+    //     });
+    // })
 </script>
+
 </html>

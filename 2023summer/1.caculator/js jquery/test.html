@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jQuery.js"></script>
+    <style>
+        input{
+            height: 40px;
+            width: 200px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    
+<input class="aa" type="text" value id="a" name="ss">来点>我1
+<input type="" id="inp" class="number" readonly="readonly" value="0">
+ 
+<input class="aa" type="text" value id="s" name="ss" />来点/>我2
+ 
+<input class="aa" type="text" value id="d" name="ss">来点<></>我3</input>
+
+
+</body>
+</html>
+<script>
+ 
+    // $(function(){
+     
+    // //propertychange监听input里面的字符变化,属性改变事件
+     
+    // $('.aa').bind('input propertychange', function() {
+     
+    // var $this = $(this);
+     
+    // console.log($this);
+     
+    // var text_length = $this.val().length;//获取当前文本框的长度
+     
+    // var current_width = parseInt(text_length) *16;//该16是改变前的宽度除以当前字符串的长度,算出每个字符的长度
+     
+    // console.log(current_width)
+     
+    // $this.css("width",current_width+"px");
+     
+    // });
+    
+     
+    // })
+    // $(function(){
+    //     $('.aa').bind('input propertychange',function(){
+    //         var obj = $(this);
+    //         var text_length = obj.val().length;  //获取当前长度
+    //         var width = parseInt(text_length)*12; //该12是改变前的宽度除以当前字符串的长度，算出每个字符的长度
+    //         obj.css('width',width+'px');
+    //     });
+    // })
+    $(function(){
+        $('.number').bind('input propertychange',function(){
+            var obj = $(this); 
+            var text_length = obj.val().length;  //获取当前长度
+            var size=40-(5*(text_length-10));
+            var width = parseInt(text_length)*12; //该12是改变前的宽度除以当前字符串的长度，算出每个字符的长度
+            if(text_length>10&&text_length<15){
+            size-=3;
+            obj.css('font-size',size+'px');
+            alert(size);    
+            }
+            
+        });
+    })
+     
+    </script>
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 50px;
+            background-color: aqua;
+        }
+    </style>
+    <script src="jQuery.js"></script>
+</head>
+<body>
+    <div class="box"></div>
+
+</body>
+
+</html>
+<script>
+    /*
+* str 文字 
+* w 盒子宽度 
+* h 盒子高度 
+* fontSize 字体大小 
+* 根据文字多少生成等比例缩放生成的元素 
+* */
+    var createDomFromFont = function (str, w, h, fontSize) {
+        let area = w * h;//外层盒子面积 
+
+        $('body').append($(``));
+        let dom = $('#getBoxSizeFromFont');
+        let domArea = dom[0].offsetWidth * dom[0].offsetHeight; //获得文字所占面积 
+        dom.remove();
+
+        let itemStyle = `display: inline-block;word-break: break-all;font-size: ${fontSize}px`;
+        if (domArea > area) {
+            var itemW = Math.sqrt(domArea * w / h);//要缩放盒子的宽度 
+            var scale = w / itemW;//缩放比例 
+            itemStyle += `width:${itemW}px;transform-origin: left center;transform:scale(${scale})`;
+        }
+        return `<div style="${itemStyle}">${str}</div>`;
+    };
+
+    $('.box').html(createDomFromFont('这是一个例子', 100, 50, 20));
+
+</script> -->

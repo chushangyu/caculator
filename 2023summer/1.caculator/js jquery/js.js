@@ -88,6 +88,12 @@ function addStr(s){
             // caculate.value+=s;
             // iffinish="0";
             yunsuan1="0";   
+            var text_length = inp.value.length;  //获取当前长度
+            var size=90-(8*(text_length-10));
+            if(text_length>10&&text_length<15){
+            $(".number").css('font-size',size+'px');    
+            // alert(size);
+            }
         }
 
     }
@@ -107,6 +113,7 @@ function addStr(s){
         equal="0";
         yunsuan="0";
         yunsuan1="0";
+        $(".number").css('font-size','90px'); 
 
     }
     function count1(){
@@ -130,6 +137,12 @@ function addStr(s){
         else{
             caculate.value=rightnumber+"=";
         }
+        var text_length = inp.value.length;  //获取当前长度
+            var size=90-(8*(text_length-10));
+            if(text_length>10&&text_length<15){
+            $(".number").css('font-size',size+'px');    
+            // alert(size);
+            }
         
     }
     function Bs(){
@@ -146,10 +159,58 @@ function addStr(s){
         key="";
         equal="0";
         yunsuan1="0";
+        var text_length = inp.value.length;  //获取当前长度
+            var size=90-(8*(text_length-10));
+            if(text_length>10&&text_length<15){
+            $(".number").css('font-size',size+'px');    
+            // alert(size);
+            }
     } 
     function CE(){
         var caculate=document.getElementById("caculate");
         caculate.value="";
         equal="0";
         yunsuan1="0";
+        
     }
+    // $(function(){
+    //     $('.number').bind('input propertychange',function(){
+    //         var obj = $(this); 
+    //         var text_length = obj.val().length;  //获取当前长度
+    //         var size=40-(5*(text_length-10));
+    //         var width = parseInt(text_length)*12; //该12是改变前的宽度除以当前字符串的长度，算出每个字符的长度
+    //         if(text_length>10&&text_length<15){
+    //         size-=3;
+    //         obj.css('font-size',size+'px');    
+    //         }
+    //     });
+    // })
+    // $(function(){
+    //     $('.number').bind('input propertychange',function(){
+    //         var obj = $(this);
+    //         var text_length = obj.val().length;  //获取当前长度
+    //         var width = parseInt(text_length)*12; //该12是改变前的宽度除以当前字符串的长度，算出每个字符的长度
+    //         obj.css('width',width+'px');
+    //     });
+    // })
+    // $(function(){
+     
+    //     //propertychange监听input里面的字符变化,属性改变事件
+         
+    //     $('.number').bind('input propertychange', function() {
+         
+    //     var $this = $(this);
+         
+    //     console.log($this);
+         
+    //     var text_length = $this.val().length;//获取当前文本框的长度
+         
+    //     var current_width = parseInt(text_length) *16;//该16是改变前的宽度除以当前字符串的长度,算出每个字符的长度
+         
+    //     console.log(current_width)
+         
+    //     $this.css("width",current_width+"px");
+         
+    //     });
+         
+    //     })

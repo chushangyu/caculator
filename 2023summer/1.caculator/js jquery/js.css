@@ -1,3 +1,4 @@
+
 input{
     background-color: #444147;
     border:none;
@@ -33,11 +34,15 @@ input{
     background-color: #444147;
     width: 480px;
     height: 800px;
-    margin:100px auto;
+    margin:50px auto;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+}
+.button{
+    height: 600px;
+    
 }
 .top_shuzi {
     width: 100%;
@@ -97,4 +102,71 @@ input{
 }
 .box3:active{
     background-color: #403e42 ;
+}
+/* 移动优先原则 */
+@media(max-width:768px) {
+    html{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    .top_shuzi{
+        height: 25%;
+        width: 100%;
+    }
+    .count{
+        height: 35%;
+        width: 100%;
+        border-top-left-radius: 0;
+    }
+
+    
+    .number{
+        height: 65%;
+        width: 100%;
+    }
+    .jisuanqi{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    .button{
+        height: 75%;
+        width: 100%;
+    }
+    .box1{
+        width: 25%;
+        height:16.6666%;
+    }
+    .box1:hover{
+        background-color: #565459;  
+    }
+    .box1:active{
+        background-color: #727074;
+    }
+    .box2{
+        width: 25%;
+        height: 16.6666%;
+    }
+    .box2:hover{
+        background-color: #FF950C;
+    }
+    .box2:active{
+        background-color: #eeb56c;
+    }
+    .box3{
+        width: 25%;
+        height: 16.6666%;
+    }
+    .box3:hover{
+        background-color: #727074;
+    }
+    .box3:active{
+        background-color: #403e42 ;
+    }
 }
